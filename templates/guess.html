@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Guess the Number (1–100)</h1>
+    {% if won %}
+      <p>{{ message }}</p>
+      <form method="get">
+        <button type="submit">Play Again</button>
+      </form>
+    {% else %}
+      <form method="post">
+        <input type="number" name="guess" min="1" max="100" required autofocus />
+        <button type="submit">Guess</button>
+      </form>
+      {% if message %}
+        <p>{{ message }}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>

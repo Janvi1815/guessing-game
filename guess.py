@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session
 import random
+import os
 
 app = Flask(__name__)
 app.secret_key = 'secret123'  # required for sessions
@@ -35,4 +36,5 @@ def index():
     return render_template("guess.html", message=message, won=won)
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5004)
+    port = int(os.environ.get("PORT", 5000))  # ✅ this makes it work on Render
+    app.run(debug=True, host="0.0.0.0", port=port)
